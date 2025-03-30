@@ -17,7 +17,9 @@ const BlogList = ({ blogs, setBlogs, setEditingBlog }) => {
 
   return (
     <div>
-      {blogs.map((blog) => (
+      {blogs.length > 0 ?(
+      
+      blogs.map((blog) => (
         <div key={blog._id} className="bg-gray-100 p-4 mb-4 rounded shadow">
           <h2 className="font-bold">{blog.title}</h2>
           <p>{blog.description}</p>
@@ -37,7 +39,14 @@ const BlogList = ({ blogs, setBlogs, setEditingBlog }) => {
             </button>
           </div>
         </div>
-      ))}
+      ))
+    ):(
+    <div className="bg-gray-200 p-20 rounded shadow text-center">
+      <p className="text-gray-500">No blogs available. Start adding some!</p>
+    </div>
+    )
+}
+      
     </div>
   );
 };

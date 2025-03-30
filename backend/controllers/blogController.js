@@ -14,6 +14,19 @@ res.status(500).json({ message: error.message });
 }
 };
 
+//getallBlogs
+
+const getAllBlogs = async (
+    req,
+    res) => {
+    try {
+    const blogs = await Blog.find();
+    res.json(blogs);
+    } catch (error) {
+    res.status(500).json({ message: error.message });
+    }
+    };
+    
 // addBlog
 
 const addBlog = async (
@@ -61,4 +74,4 @@ const addBlog = async (
                 res.status(500).json({ message: error.message });
                 }
                 };
-                module.exports = { getBlogs, addBlog, updateBlog, deleteBlog };
+                module.exports = { getBlogs,getAllBlogs, addBlog, updateBlog, deleteBlog };
