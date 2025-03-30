@@ -33,6 +33,7 @@ const Blogs = () => {
         setEditingBlog={setEditingBlog}
       />
       <BlogList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
+     {/*<BlogView blogs={blogs} />*/}
     </div>
   );
 };
