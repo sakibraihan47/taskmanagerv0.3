@@ -26,13 +26,13 @@ const Blogs = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <TaskForm
+      <BlogForm
         blogs={blogs}
         setBlogs={setBlogs}
         editingBlog={editingBlog}
         setEditingBlog={setEditingBlog}
       />
-      <TaskList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
+      <BlogList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
     </div>
   );
 };
