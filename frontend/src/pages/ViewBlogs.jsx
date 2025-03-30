@@ -28,9 +28,13 @@ const ViewBlogs = () => {
 
      return (
       <div>
+        <div className="bg-sky-950 p-6 shadow text-center">
+        <p className="text-white font-extrabold">BlogSpace - Your Personal BlogSpace</p>
+      </div>
         {blogs.length > 0 ?(
         
         blogs.map((blog) => (
+          
           <div key={blog} className="bg-gray-100 p-4 mb-4 rounded shadow">
             <h2 className="font-bold">{blog.title}</h2>
             <p>{blog.description}</p>
