@@ -11,7 +11,7 @@ const BlogForm = ({ blogs, setBlogs, editingBlog, setEditingBlog }) => {
       setFormData({
         title: editingBlog.title,
         description: editingBlog.description,
-        deadline: editingBlog.date,
+        date: editingBlog.date,
       });
     } else {
       setFormData({ title: '', description: '', date: '' });
@@ -63,7 +63,7 @@ const BlogForm = ({ blogs, setBlogs, editingBlog, setEditingBlog }) => {
         className="w-full mb-4 p-2 border rounded"
       />
       <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
-        {editingTask ? 'Update Blog' : 'Add Blog'}
+        {editingBlog ? 'Update Blog' : 'Add Blog'}
       </button>
     </form>
   );

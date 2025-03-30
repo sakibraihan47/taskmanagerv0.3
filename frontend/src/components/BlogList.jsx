@@ -6,7 +6,7 @@ const BlogList = ({ blogs, setBlogs, setEditingBlog }) => {
 
   const handleDelete = async (blogId) => {
     try {
-      await axiosInstance.delete(`/api/tasks/${blogId}`, {
+      await axiosInstance.delete(`/api/blogs/${blogId}`, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       setBlogs(blogs.filter((blog) => blog._id !== blogId));
