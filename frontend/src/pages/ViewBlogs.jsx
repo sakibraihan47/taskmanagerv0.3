@@ -7,7 +7,7 @@ const ViewBlogs = () => {
  
     const { user } = useAuth();
      const [blogs, setBlogs] = useState([]);
-    // const [editingBlog, setEditingBlog] = useState(null);
+
    
     
      useEffect(() => {
