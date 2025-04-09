@@ -14,9 +14,9 @@ let server;
 let port;
 
 
-describe('AddTask Function Test', () => {
+describe('AddBlog Function Test', () => {
 
-  it('should create a new task successfully', async () => {
+  it('should create a new blog successfully', async () => {
     // Mock request data
     const req = {
       user: { id: new mongoose.Types.ObjectId() },
@@ -76,15 +76,15 @@ describe('AddTask Function Test', () => {
 
 });
 
+/**** 
+describe('UpdateBlog Function Test', () => {
 
-describe('Update Function Test', () => {
-
-  it('should update task successfully', async () => {
+  it('should update Blog successfully', async () => {
     // Mock task data
     const blogId = new mongoose.Types.ObjectId();
     const existingBlog = {
       _id: blogId,
-      title: "Old Task",
+      title: "Old Blog",
       description: "Old Description",
       completed: false,
       date: new Date(),
@@ -96,7 +96,7 @@ describe('Update Function Test', () => {
     // Mock request & response
     const req = {
       params: { id: blogId },
-      body: { title: "New Task", completed: true }
+      body: { title: "New Blog", completed: true }
     };
     const res = {
       json: sinon.spy(), 
@@ -118,7 +118,7 @@ describe('Update Function Test', () => {
 
 
 
-  it('should return 404 if task is not found', async () => {
+  it('should return 404 if blog is not found', async () => {
     const findByIdStub = sinon.stub(Blog, 'findById').resolves(null);
 
     const req = { params: { id: new mongoose.Types.ObjectId() }, body: {} };
@@ -156,7 +156,90 @@ describe('Update Function Test', () => {
 
 });
 
+**/
 
+describe('UpdateBlog Function Test', () => {
+  afterEach(() => {
+    // Restore all stubs after each test to ensure clean state
+    sinon.restore();
+  });
+
+  it('should update Blog successfully', async () => {
+    // Mock blog data
+    const blogId = new mongoose.Types.ObjectId();
+    const existingBlog = {
+      _id: blogId,
+      title: 'Old Blog',
+      description: 'Old Description',
+      completed: false,
+      date: new Date(),
+      save: sinon.stub().resolvesThis(), // Mock save method
+    };
+
+    // Stub Blog.findById to return the mock blog
+    sinon.stub(Blog, 'findById').resolves(existingBlog);
+
+    // Mock request and response objects
+    const req = {
+      params: { id: blogId.toString() },
+      body: { title: 'New Blog', completed: true },
+    };
+    const res = {
+      json: sinon.spy(),
+      status: sinon.stub().returnsThis(),
+    };
+
+    // Call the function
+    await updateBlog(req, res);
+
+    // Assertions
+    expect(existingBlog.title).to.equal('New Blog');
+    expect(existingBlog.completed).to.equal(true);
+    expect(res.status.called).to.be.false; // No errors, so status should not be called
+    expect(res.json.calledOnce).to.be.true;
+
+    // Assert that response contains the updated blog
+    expect(res.json.calledWith(sinon.match({ title: 'New Blog', completed: true }))).to.be.true;
+  });
+
+  it('should return 404 if blog is not found', async () => {
+    // Stub Blog.findById to return null
+    sinon.stub(Blog, 'findById').resolves(null);
+
+    // Mock request and response objects
+    const req = { params: { id: new mongoose.Types.ObjectId() }, body: {} };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.spy(),
+    };
+
+    // Call the function
+    await updateBlog(req, res);
+
+    // Assertions
+    expect(res.status.calledWith(404)).to.be.true;
+    expect(res.json.calledWith({ message: 'Blog not found' })).to.be.true;
+  });
+
+  it('should return 500 on database error', async () => {
+    // Stub Blog.findById to throw an error
+    sinon.stub(Blog, 'findById').throws(new Error('Database Error'));
+
+    // Mock request and response objects
+    const req = { params: { id: new mongoose.Types.ObjectId() }, body: {} };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.spy(),
+    };
+
+    // Call the function
+    await updateBlog(req, res);
+
+    // Assertions
+    expect(res.status.calledWith(500)).to.be.true;
+    expect(res.json.calledWith(sinon.match.has('message'))).to.be.true;
+  });
+});
 
 describe('GetBlog Function Test', () => {
 
@@ -220,7 +303,7 @@ describe('GetBlog Function Test', () => {
 
 describe('DeleteBlog Function Test', () => {
 
-  it('should delete a task successfully', async () => {
+  it('should delete a blog successfully', async () => {
     // Mock request data
     const req = { params: { id: new mongoose.Types.ObjectId().toString() } };
 
