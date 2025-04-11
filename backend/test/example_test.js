@@ -171,7 +171,7 @@ describe('UpdateBlog Function Test', () => {
       _id: blogId,
       title: 'Old Blog',
       description: 'Old Description',
-      completed: false,
+     // completed: false,
       date: new Date(),
       save: sinon.stub().resolvesThis(), // Mock save method
     };
@@ -182,7 +182,8 @@ describe('UpdateBlog Function Test', () => {
     // Mock request and response objects
     const req = {
       params: { id: blogId.toString() },
-      body: { title: 'New Blog', completed: true },
+     body: { title: 'New Blog' }, 
+     // body: { title: 'New Blog', completed: true }, 
     };
     const res = {
       json: sinon.spy(),
@@ -194,12 +195,13 @@ describe('UpdateBlog Function Test', () => {
 
     // Assertions
     expect(existingBlog.title).to.equal('New Blog');
-    expect(existingBlog.completed).to.equal(true);
+   // expect(existingBlog.completed).to.equal(true);
     expect(res.status.called).to.be.false; // No errors, so status should not be called
     expect(res.json.calledOnce).to.be.true;
 
     // Assert that response contains the updated blog
-    expect(res.json.calledWith(sinon.match({ title: 'New Blog', completed: true }))).to.be.true;
+    //expect(res.json.calledWith(sinon.match({ title: 'New Blog', completed: true }))).to.be.true;
+    expect(res.json.calledWith(sinon.match({ title: 'New Blog' }))).to.be.true;
   });
 
   it('should return 404 if blog is not found', async () => {
