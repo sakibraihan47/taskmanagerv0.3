@@ -6,6 +6,7 @@ import Profile from './pages/Profile';
 import Blogs from './pages/Blogs';
 import Home from './pages/Home';
 import ViewBlogs from './pages/ViewBlogs';
+import AllBlogs from './pages/AllBlogs';
 function App() {
   return (
     <Router>

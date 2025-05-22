@@ -11,9 +11,9 @@ const AllBlogList = () => {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axiosInstance.get('/api/blogs', {
+        const response = await axiosInstance.get('/api/space', {
           headers: {
-            Authorization: `Bearer ${user?.token}`,
+            Authorization: `Bearer ${user.token}`,
           },
         });
         setBlogs(response.data);
@@ -59,7 +59,7 @@ const AllBlogList = () => {
                 <div className="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-600">
                   <span>
                     <span className="font-semibold" style={{ color: '#7952ae' }}>Author:</span>{' '}
-                    {blog.userId?.username || blog.userId?.email || "Unknown"}
+                    {blog.userId?.username || blog.userId.email || "Unknown"}
                   </span>
                   <span>
                     <span className="font-semibold" style={{ color: '#7952ae' }}>Date:</span>{' '}

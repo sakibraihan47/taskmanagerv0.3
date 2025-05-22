@@ -27,7 +27,13 @@ const BlogList = ({ blogs, setBlogs, setEditingBlog }) => {
           <div className="mt-2">
             <button
               onClick={() => setEditingBlog(blog)}
-              className="mr-2 bg-yellow-500 text-white px-4 py-2 rounded"
+              
+
+               className="px-4 py-2 rounded text-white mr-2 transition"
+  style={{ background: '#7952ae' }}
+  onMouseOver={e => e.currentTarget.style.background = '#a259d9'}
+  onMouseOut={e => e.currentTarget.style.background = '#7952ae'}
+
             >
               Edit
             </button>

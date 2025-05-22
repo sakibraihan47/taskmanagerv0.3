@@ -25,15 +25,24 @@ const Blogs = () => {
   }, [user]);
 
   return (
-    <div className="container mx-auto p-6">
-      <BlogForm
-        blogs={blogs}
-        setBlogs={setBlogs}
-        editingBlog={editingBlog}
-        setEditingBlog={setEditingBlog}
-      />
-      <BlogList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
-     {/*<BlogView blogs={blogs} />*/}
+    <div
+      className="min-h-screen w-full flex flex-col items-center"
+      style={{
+        background: '#ece3fc', // matches the theme background
+        paddingTop: '2rem',
+        paddingBottom: '2rem'
+      }}
+    >
+      <div className="w-full max-w-4xl">
+        <BlogForm
+          blogs={blogs}
+          setBlogs={setBlogs}
+          editingBlog={editingBlog}
+          setEditingBlog={setEditingBlog}
+        />
+        <BlogList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
+        {/* <BlogView blogs={blogs} /> */}
+      </div>
     </div>
   );
 };

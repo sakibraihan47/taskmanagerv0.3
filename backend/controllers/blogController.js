@@ -28,11 +28,10 @@ const getAllBlogs = async (
     };
 */
 
-
 const getAllBlogs = async (req, res) => {
   try {
-    // Find all blogs and populate user info
-    const blogs = await Blog.find();
+    // Find all blogs and populate user info (username and email)
+    const blogs = await Blog.find().populate('userId', 'username email');
     res.status(200).json(blogs);
   } catch (error) {
     res.status(500).json({ message: 'Failed to fetch blogs', error: error.message });
@@ -41,14 +40,17 @@ const getAllBlogs = async (req, res) => {
 
 
 
+// Controller for GET /space
+const getBlogSpace = async (req, res) => {
+  try {
+    const blogs = await Blog.find().populate('userId', 'username email');
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch blogs', error: error.message });
+  }
+};
 
-
-
-    
 // addBlog
-
-
-
 
 const addBlog = async (
     req,
@@ -95,4 +97,8 @@ const addBlog = async (
                 res.status(500).json({ message: error.message });
                 }
                 };
-                module.exports = { getBlogs,getAllBlogs, addBlog, updateBlog, deleteBlog };
+                module.exports = { getBlogs,getAllBlogs, addBlog, updateBlog, deleteBlog, getBlogSpace };
+
+
+                const Blog = require('../models/Blog');
+

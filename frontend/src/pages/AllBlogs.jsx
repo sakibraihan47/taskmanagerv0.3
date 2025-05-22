@@ -1,71 +1,77 @@
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
-import BlogView from '../components/BlogView';
-import { useAuth } from '../context/AuthContext';
 
-const ViewBlogs = () => {
- 
-    const { user } = useAuth();
-     const [blogs, setBlogs] = useState([]);
+const AllBlogs = () => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-   
-    
-     useEffect(() => {
-       const fetchBlogs = async () => {
-         try {
-           const response = await axiosInstance.get('/api/blogs',{
-            headers: { Authorization: `Bearer ${user.token}` },
-          });
-      
-           setBlogs(response.data);
-         } catch (error) {
-           alert('Failed to fetch Blogs.');
-         }
-       };
-   
-       fetchBlogs();
-     }, []);
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axiosInstance.get('/api/space');
+        // Log the response for debugging
+        console.log('API response:', response.data);
+        // Handle both array and object response
+        if (Array.isArray(response.data)) {
+          setBlogs(response.data);
+        } else if (Array.isArray(response.data.blogs)) {
+          setBlogs(response.data.blogs);
+        } else {
+          setBlogs([]);
+        }
+      } catch (err) {
+        console.error('Failed to load blogs:', err.response || err.message || err);
+        setError('Failed to load blogs');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
-     return (
-      <div>
-        <div className="bg-sky-950 p-6 shadow text-center">
-        <p className="text-white font-extrabold">BlogSpace - Your Personal BlogSpace</p>
-      </div>
-        {blogs.length > 0 ?(
-        
-        blogs.map((blog) => (
-          
-          <div key={blog} className="bg-gray-100 p-4 mb-4 rounded shadow">
-            <h2 className="font-bold">{blog.title}</h2>
-            <p>{blog.description}</p>
-            <p className="text-sm text-gray-500">Date: {new Date(blog.date).toLocaleDateString()}</p>
-          {/*
-          <div className="mt-2">
-             // <button
-                onClick={() => setEditingBlog(blog)}
-                className="mr-2 bg-yellow-500 text-white px-4 py-2 rounded"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(blog._id)}
-                className="bg-red-500 text-white px-4 py-2 rounded"
-              >
-                Delete
-              </button>
-            </div>
-           */ }
+  return (
+    <div
+      className="min-h-screen flex flex-col items-center"
+      style={{ background: '#ece3fc', paddingTop: '2rem', paddingBottom: '2rem' }}
+    >
+      <div className="w-full max-w-3xl mx-auto bg-transparent p-8 rounded">
+        <h2 className="text-3xl font-bold mb-10 text-center" style={{ color: '#7952ae' }}>
+          All Blogs
+        </h2>
+        {loading ? (
+          <div className="text-center mt-8">Loading blogs...</div>
+        ) : error ? (
+          <div className="text-center mt-8 text-red-500">{error}</div>
+        ) : blogs.length === 0 ? (
+          <div className="bg-gray-200 p-8 rounded shadow text-center">
+            <p className="text-gray-500">No blogs found.</p>
           </div>
-        ))
-      ):(
-      <div className="bg-gray-200 p-20 rounded shadow text-center">
-        <p className="text-gray-500">No blogs available. Start adding some!</p>
+        ) : (
+          <ul className="space-y-8">
+            {blogs.map((blog) => (
+              <li key={blog._id} className="bg-white rounded shadow p-6">
+                <h3 className="text-2xl font-semibold mb-2" style={{ color: '#a259d9' }}>
+                  {blog.title}
+                </h3>
+                <p className="mb-4 text-gray-800">{blog.description}</p>
+                <div className="flex flex-col sm:flex-row sm:justify-between text-sm text-gray-600">
+                  <span>
+                    <span className="font-semibold" style={{ color: '#7952ae' }}>Author:</span>{' '}
+                    {blog.userId?.username || blog.userId?.email || "Unknown"}
+                  </span>
+                  <span>
+                    <span className="font-semibold" style={{ color: '#7952ae' }}>Date:</span>{' '}
+                    {new Date(blog.date || blog.createdAt).toLocaleDateString()}
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-      )
-  }
-        
-      </div>
-    );
+    </div>
+  );
 };
 
-export default ViewBlogs;
+export default AllBlogs;

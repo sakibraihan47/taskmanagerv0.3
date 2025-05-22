@@ -9,10 +9,14 @@ dotenv.config();
 
 const app = express();
 
+const blogRoutes = require('./routes/blogRoutes');
+app.use('/api', blogRoutes);
+
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/blogs', require('./routes/blogRoutes'));
+app.use('/api/', require('./routes/blogRoutes'));
 
 // Export the app object for testing
 if (require.main === module) {

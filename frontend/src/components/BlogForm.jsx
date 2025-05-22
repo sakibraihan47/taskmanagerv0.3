@@ -41,10 +41,10 @@ const BlogForm = ({ blogs, setBlogs, editingBlog, setEditingBlog }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-6">
-      <h1 className="text-2xl font-bold mb-4">{editingBlog ? 'Edit Blog' : 'Add Blog'}</h1>
+      <h1 className="text-2xl font-bold mb-4">{editingBlog ? 'Edit Blog' : 'Add your Blog to BlogSpace'}</h1>
       <input
         type="text"
-        placeholder="Title"
+        placeholder="Blog Title"
         value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
         className="w-full mb-4 p-2 border rounded"

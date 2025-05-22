@@ -74,8 +74,8 @@ const Profile = () => {
           <span
             className="text-white font-extrabold"
             style={{
-              fontSize: '4rem',
-              letterSpacing: '2px',
+              fontSize: '1rem',
+
             }}
           >
             BlogSpace - Your Space
