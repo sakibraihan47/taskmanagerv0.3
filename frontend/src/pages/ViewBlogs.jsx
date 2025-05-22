@@ -3,7 +3,7 @@ import axiosInstance from '../axiosConfig';
 import { useAuth } from '../context/AuthContext';
 
 const ViewBlogs = () => {
-  const { user } = useAuth();
+ // const { user } = useAuth();
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
