@@ -3,7 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../axiosConfig';
 
 const Profile = () => {
-  const { user } = useAuth(); // Access user token from context
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,7 +13,6 @@ const Profile = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Fetch profile data from the backend
     const fetchProfile = async () => {
       setLoading(true);
       try {
@@ -52,52 +51,45 @@ const Profile = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-20">Loading...</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ background: '#ece3fc' }}>
+        <div className="text-2xl text-[#7952ae] font-bold animate-pulse">Loading...</div>
+      </div>
+    );
   }
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center justify-start"
+      className="min-h-screen flex flex-col items-center"
       style={{
-        background: '#f9f9fb',
+        background: '#ece3fc',
+        paddingTop: '2rem',
+        paddingBottom: '2rem',
       }}
     >
       {/* Header Bar */}
       <div
-        className="w-full shadow"
+        className="w-full max-w-3xl mx-auto p-8 rounded mb-10"
         style={{
-          background: '#a259d9',
-          borderTop: '5px solid #60a5fa',
+          background: 'linear-gradient(90deg, #a259d9 0%, #7952ae 100%)',
+          boxShadow: '0 8px 32px 0 rgba(123, 97, 255, 0.18)',
         }}
       >
-        <div className="max-w-screen-xl mx-auto px-8 py-6">
-          <span
-            className="text-white font-extrabold"
-            style={{
-              fontSize: '1rem',
-
-            }}
-          >
-            BlogSpace - Your Space
-          </span>
-        </div>
+        <p className="text-2xl font-extrabold text-white text-center">
+          BlogSpace - Your Profile Information
+        </p>
       </div>
-      {/* Profile form container */}
-      <div
-        className="w-full flex flex-col items-center"
-        style={{
-          minHeight: 'calc(100vh - 128px)',
-          background: '#ece3fc',
-        }}
-      >
+      {/* Profile Form */}
+      <div className="w-full max-w-2xl mx-auto">
         <form
           onSubmit={handleSubmit}
-          className="w-full max-w-xl mx-auto bg-transparent p-8 mt-12 rounded"
+          className="bg-white rounded shadow-lg p-10"
+          style={{
+            borderLeft: '6px solid #a259d9',
+            boxShadow: '0 4px 24px 0 rgba(123, 97, 255, 0.10)',
+          }}
         >
-          <h1
-            className="text-3xl font-bold mb-10 text-center"
-            style={{ color: '#7952ae' }}
-          >
+          <h1 className="text-3xl font-bold mb-10 text-center" style={{ color: '#7952ae' }}>
             Your Profile
           </h1>
           <div className="mb-8">
@@ -114,8 +106,8 @@ const Profile = () => {
               placeholder="Your name"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="w-full p-4 border rounded text-gray-800"
-              style={{ background: '#fff', fontSize: '1rem' }}
+              className="w-full p-4 border rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a259d9] transition"
+              style={{ background: '#f9f9fb', fontSize: '1rem' }}
             />
           </div>
           <div className="mb-8">
@@ -132,8 +124,8 @@ const Profile = () => {
               placeholder="Email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="w-full p-4 border rounded text-gray-800"
-              style={{ background: '#fff', fontSize: '1rem' }}
+              className="w-full p-4 border rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a259d9] transition"
+              style={{ background: '#f9f9fb', fontSize: '1rem' }}
             />
           </div>
           <div className="mb-8">
@@ -152,8 +144,8 @@ const Profile = () => {
               onChange={(e) =>
                 setFormData({ ...formData, university: e.target.value })
               }
-              className="w-full p-4 border rounded text-gray-800"
-              style={{ background: '#fff', fontSize: '1rem' }}
+              className="w-full p-4 border rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a259d9] transition"
+              style={{ background: '#f9f9fb', fontSize: '1rem' }}
             />
           </div>
           <div className="mb-12">
@@ -172,19 +164,21 @@ const Profile = () => {
               onChange={(e) =>
                 setFormData({ ...formData, address: e.target.value })
               }
-              className="w-full p-4 border rounded text-gray-800"
-              style={{ background: '#fff', fontSize: '1rem' }}
+              className="w-full p-4 border rounded text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a259d9] transition"
+              style={{ background: '#f9f9fb', fontSize: '1rem' }}
             />
           </div>
           <button
             type="submit"
-            className="w-full p-4 rounded font-semibold"
+            className="w-full p-4 rounded font-semibold shadow"
             style={{
-              background: '#7952ae',
+              background: 'linear-gradient(90deg, #a259d9 0%, #7952ae 100%)',
               color: '#fff',
               fontSize: '1.2rem',
               marginTop: '2rem',
               transition: 'background 0.2s',
+              letterSpacing: '1px',
+              boxShadow: '0 4px 16px 0 rgba(123, 97, 255, 0.08)',
             }}
             disabled={loading}
           >

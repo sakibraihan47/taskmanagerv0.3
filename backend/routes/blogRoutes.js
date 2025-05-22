@@ -1,13 +1,15 @@
 const express = require('express');
-const { getBlogs, getAllBlogs, addBlog, updateBlog, deleteBlog, getBlogSpace } = require('../controllers/blogController');
+const { getBlogs, getAllBlogs, addBlog, updateBlog, deleteBlog } = require('../controllers/blogController');
 const { protect } = require('../middleware/authMiddleware');
 const router = express.Router();
 
-// Public route for all blogs (for AllBlogs.jsx)
-router.get('/space', getBlogSpace);
-
-// Authenticated user routes
+// Get blogs for current user (protected)
 router.route('/').get(protect, getBlogs).post(protect, addBlog);
+
+// Get all blogs (public)
+router.route('/space').get(getAllBlogs);
+
+// Update and delete a blog (protected)
 router.route('/:id').put(protect, updateBlog).delete(protect, deleteBlog);
 
 module.exports = router;

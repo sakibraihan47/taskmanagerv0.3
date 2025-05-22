@@ -1,27 +1,87 @@
-import { useState, useEffect } from 'react';
-import { useAuth } from '../context/AuthContext';
-import axiosInstance from '../axiosConfig';
-import { useNavigate } from 'react-router-dom';
-
 const Home = () => {
   return (
-          <section class="bg-white dark:bg-gray-900">
-              <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 h-screen">
-                  <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">BlogSpace. Share your thoughts</h1>
-                  <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Here at BlogSpace we focus on markets where technology, innovation, and capital can unlock long-term value and drive economic growth.</p>
-                  <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-                      <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                          Login
-                          <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                          </svg>
-                      </a>
-                      <a href="#" class="py-3 px-5 sm:ms-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
-                          Sign Up
-                      </a>  
-                  </div>
-              </div>
-          </section>
+    <section
+      className="min-h-screen flex items-center justify-center bg-white"
+      style={{ padding: "2rem 0" }}
+    >
+      <div className="flex flex-col md:flex-row items-center gap-12 w-full max-w-5xl px-2">
+        {/* Left: Title and Subtitle */}
+        <div className="flex-1 flex flex-col items-start">
+          <h1
+            className="text-[3rem] md:text-[4rem] font-extrabold leading-none mb-6"
+            style={{
+              color: "#a259d9",
+              fontFamily: "serif",
+              lineHeight: 1.05,
+            }}
+          >
+            Welcome to<br />
+            BlogSpace
+          </h1>
+          <p
+            className="text-2xl md:text-3xl font-bold text-black"
+            style={{
+              fontFamily: "serif",
+              lineHeight: 1.1,
+              marginTop: "1rem",
+              maxWidth: "38rem",
+            }}
+          >
+            Share ideas, connect with others,<br />
+            and grow your voice through writing.
+          </p>
+        </div>
+        {/* Right: Logo */}
+        <div className="flex-1 flex items-center justify-center">
+          {/* SVG Logo to match the style in the image */}
+          <div
+            style={{
+              background: "linear-gradient(180deg, #8a38d5 0%, #e06c6c 100%)",
+              borderRadius: "0.5rem",
+              width: "260px",
+              height: "260px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              boxShadow: "0 6px 30px 0 rgba(120, 70, 225, 0.15)",
+            }}
+          >
+            <svg width="180" height="180" viewBox="0 0 180 180" fill="none">
+              <circle cx="90" cy="90" r="72" fill="white" opacity="0.18"/>
+              <circle cx="90" cy="90" r="60" fill="white"/>
+              <circle cx="90" cy="90" r="55" fill="none" stroke="#a259d9" strokeWidth="6"/>
+              <text
+                x="50%"
+                y="57%"
+                textAnchor="middle"
+                alignmentBaseline="middle"
+                fontSize="56"
+                fontWeight="bold"
+                fill="#a259d9"
+                fontFamily="serif"
+                style={{ filter: "drop-shadow(0 2px 2px #eee)" }}
+              >
+                B
+              </text>
+              <text
+                x="50%"
+                y="80%"
+                textAnchor="middle"
+                alignmentBaseline="middle"
+                fontSize="24"
+                fill="#8a38d5"
+                fontFamily="Arial,sans-serif"
+                letterSpacing="4"
+                style={{ fontWeight: 700 }}
+              >
+                BLOGSPACE
+              </text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
   );
-}
+};
+
 export default Home;

@@ -40,29 +40,74 @@ const BlogForm = ({ blogs, setBlogs, editingBlog, setEditingBlog }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded mb-6">
-      <h1 className="text-2xl font-bold mb-4">{editingBlog ? 'Edit Blog' : 'Add your Blog to BlogSpace'}</h1>
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-8 shadow-lg rounded mb-8"
+      style={{
+        borderLeft: '6px solid #a259d9',
+        boxShadow: '0 4px 24px 0 rgba(123, 97, 255, 0.10)',
+        maxWidth: 600,
+        margin: '0 auto'
+      }}
+    >
+      <h1 className="text-2xl font-bold mb-6" style={{ color: '#7952ae' }}>
+        {editingBlog ? 'Edit Blog' : 'Add new Blog to BlogSpace'}
+      </h1>
       <input
         type="text"
         placeholder="Blog Title"
         value={formData.title}
         onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-5 p-3 border rounded font-semibold focus:outline-none focus:ring-2"
+        style={{
+          background: '#f9f9fb',
+          borderColor: '#a259d9',
+          color: '#7952ae',
+          fontSize: '1.1rem',
+          boxShadow: '0 2px 8px 0 rgba(123, 97, 255, 0.06)'
+        }}
       />
-      <input
-        type="text"
+      <textarea
         placeholder="Description"
         value={formData.description}
         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-5 p-3 border rounded font-semibold focus:outline-none focus:ring-2"
+        rows={8}
+        style={{
+          resize: 'vertical',
+          minHeight: '140px',
+          background: '#f9f9fb',
+          borderColor: '#a259d9',
+          color: '#7952ae',
+          fontSize: '1.08rem',
+          boxShadow: '0 2px 8px 0 rgba(123, 97, 255, 0.06)'
+        }}
       />
       <input
         type="date"
-        value={formData.deadline}
+        value={formData.date}
         onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-        className="w-full mb-4 p-2 border rounded"
+        className="w-full mb-6 p-3 border rounded font-semibold focus:outline-none focus:ring-2"
+        style={{
+          background: '#f9f9fb',
+          borderColor: '#a259d9',
+          color: '#7952ae',
+          fontSize: '1.05rem',
+          boxShadow: '0 2px 8px 0 rgba(123, 97, 255, 0.06)'
+        }}
       />
-      <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
+      <button
+        type="submit"
+        className="w-full p-4 rounded font-semibold shadow"
+        style={{
+          background: 'linear-gradient(90deg, #a259d9 0%, #7952ae 100%)',
+          color: '#fff',
+          fontSize: '1.15rem',
+          transition: 'background 0.2s',
+          letterSpacing: '1px',
+          boxShadow: '0 4px 16px 0 rgba(123, 97, 255, 0.08)',
+        }}
+      >
         {editingBlog ? 'Update Blog' : 'Add Blog'}
       </button>
     </form>

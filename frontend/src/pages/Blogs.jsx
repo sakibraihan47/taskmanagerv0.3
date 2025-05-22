@@ -28,20 +28,28 @@ const Blogs = () => {
     <div
       className="min-h-screen w-full flex flex-col items-center"
       style={{
-        background: '#ece3fc', // matches the theme background
+        background: '#ece3fc',
         paddingTop: '2rem',
         paddingBottom: '2rem'
       }}
     >
-      <div className="w-full max-w-4xl">
-        <BlogForm
-          blogs={blogs}
-          setBlogs={setBlogs}
-          editingBlog={editingBlog}
-          setEditingBlog={setEditingBlog}
-        />
-        <BlogList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
-        {/* <BlogView blogs={blogs} /> */}
+      <div className="w-full max-w-5xl px-4 sm:px-8">
+        {/* Flex row for desktop, column for mobile */}
+        <div className="flex flex-col md:flex-row gap-8">
+          {/* Blog List LEFT */}
+          <div className="md:w-2/3 w-full">
+            <BlogList blogs={blogs} setBlogs={setBlogs} setEditingBlog={setEditingBlog} />
+          </div>
+          {/* Blog Form RIGHT */}
+          <div className="md:w-1/3 w-full">
+            <BlogForm
+              blogs={blogs}
+              setBlogs={setBlogs}
+              editingBlog={editingBlog}
+              setEditingBlog={setEditingBlog}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );

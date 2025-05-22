@@ -6,7 +6,7 @@ import Profile from './pages/Profile';
 import Blogs from './pages/Blogs';
 import Home from './pages/Home';
 import ViewBlogs from './pages/ViewBlogs';
-import AllBlogs from './pages/AllBlogs';
+
 function App() {
   return (
     <Router>
@@ -17,7 +17,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/blogs" element={<Blogs />} />
-        <Route path="/viewblogs" element={<ViewBlogs />} />
+        <Route path="/viewblogs" element={<ViewBlogs/>} />
       </Routes>
     </Router>
   );
