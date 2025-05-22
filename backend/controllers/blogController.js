@@ -15,7 +15,7 @@ res.status(500).json({ message: error.message });
 };
 
 //getallBlogs
-
+/*
 const getAllBlogs = async (
     req,
     res) => {
@@ -26,8 +26,29 @@ const getAllBlogs = async (
     res.status(500).json({ message: error.message });
     }
     };
+*/
+
+
+const getAllBlogs = async (req, res) => {
+  try {
+    // Find all blogs and populate user info
+    const blogs = await Blog.find();
+    res.status(200).json(blogs);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to fetch blogs', error: error.message });
+  }
+};
+
+
+
+
+
+
     
 // addBlog
+
+
+
 
 const addBlog = async (
     req,

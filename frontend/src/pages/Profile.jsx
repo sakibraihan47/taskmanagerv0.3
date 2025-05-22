@@ -56,41 +56,142 @@ const Profile = () => {
   }
 
   return (
-    <div className="max-w-md mx-auto mt-20">
-      <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
-        <h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
-        <input
-          type="text"
-          placeholder="Name"
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full mb-4 p-2 border rounded"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full mb-4 p-2 border rounded"
-        />
-        <input
-          type="text"
-          placeholder="University"
-          value={formData.university}
-          onChange={(e) => setFormData({ ...formData, university: e.target.value })}
-          className="w-full mb-4 p-2 border rounded"
-        />
-        <input
-          type="text"
-          placeholder="Address"
-          value={formData.address}
-          onChange={(e) => setFormData({ ...formData, address: e.target.value })}
-          className="w-full mb-4 p-2 border rounded"
-        />
-        <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
-          {loading ? 'Updating...' : 'Update Profile'}
-        </button>
-      </form>
+    <div
+      className="min-h-screen flex flex-col items-center justify-start"
+      style={{
+        background: '#f9f9fb',
+      }}
+    >
+      {/* Header Bar */}
+      <div
+        className="w-full shadow"
+        style={{
+          background: '#a259d9',
+          borderTop: '5px solid #60a5fa',
+        }}
+      >
+        <div className="max-w-screen-xl mx-auto px-8 py-6">
+          <span
+            className="text-white font-extrabold"
+            style={{
+              fontSize: '4rem',
+              letterSpacing: '2px',
+            }}
+          >
+            BlogSpace - Your Space
+          </span>
+        </div>
+      </div>
+      {/* Profile form container */}
+      <div
+        className="w-full flex flex-col items-center"
+        style={{
+          minHeight: 'calc(100vh - 128px)',
+          background: '#ece3fc',
+        }}
+      >
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-xl mx-auto bg-transparent p-8 mt-12 rounded"
+        >
+          <h1
+            className="text-3xl font-bold mb-10 text-center"
+            style={{ color: '#7952ae' }}
+          >
+            Your Profile
+          </h1>
+          <div className="mb-8">
+            <label
+              htmlFor="name"
+              className="block mb-2 font-semibold text-lg"
+              style={{ color: '#7952ae' }}
+            >
+              Name
+            </label>
+            <input
+              id="name"
+              type="text"
+              placeholder="Your name"
+              value={formData.name}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              className="w-full p-4 border rounded text-gray-800"
+              style={{ background: '#fff', fontSize: '1rem' }}
+            />
+          </div>
+          <div className="mb-8">
+            <label
+              htmlFor="email"
+              className="block mb-2 font-semibold text-lg"
+              style={{ color: '#7952ae' }}
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              className="w-full p-4 border rounded text-gray-800"
+              style={{ background: '#fff', fontSize: '1rem' }}
+            />
+          </div>
+          <div className="mb-8">
+            <label
+              htmlFor="university"
+              className="block mb-2 font-semibold text-lg"
+              style={{ color: '#7952ae' }}
+            >
+              University
+            </label>
+            <input
+              id="university"
+              type="text"
+              placeholder="University"
+              value={formData.university}
+              onChange={(e) =>
+                setFormData({ ...formData, university: e.target.value })
+              }
+              className="w-full p-4 border rounded text-gray-800"
+              style={{ background: '#fff', fontSize: '1rem' }}
+            />
+          </div>
+          <div className="mb-12">
+            <label
+              htmlFor="address"
+              className="block mb-2 font-semibold text-lg"
+              style={{ color: '#7952ae' }}
+            >
+              Address
+            </label>
+            <input
+              id="address"
+              type="text"
+              placeholder="Address"
+              value={formData.address}
+              onChange={(e) =>
+                setFormData({ ...formData, address: e.target.value })
+              }
+              className="w-full p-4 border rounded text-gray-800"
+              style={{ background: '#fff', fontSize: '1rem' }}
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full p-4 rounded font-semibold"
+            style={{
+              background: '#7952ae',
+              color: '#fff',
+              fontSize: '1.2rem',
+              marginTop: '2rem',
+              transition: 'background 0.2s',
+            }}
+            disabled={loading}
+          >
+            {loading ? 'Updating...' : 'Update'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

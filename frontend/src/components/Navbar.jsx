@@ -11,7 +11,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-600 text-white p-4 flex justify-between items-center">
+    <nav className="bg-purple-600 text-white p-4 flex justify-between items-center">
       <Link to="/" className="text-2xl font-bold">BlogSpace</Link>
       <div>
         {user ? (
@@ -19,6 +19,10 @@ const Navbar = () => {
             <Link to="/viewblogs" className="mr-4">Blogs</Link>
             <Link to="/blogs" className="mr-4">Your Blogs</Link>
             <Link to="/profile" className="mr-4">Profile</Link>
+
+             <span className="mr-8 font-bold">
+              Welcome, {user.name || user.username || user.email}
+            </span>
             <button
               onClick={handleLogout}
               className="bg-red-500 px-4 py-2 rounded hover:bg-red-700"
