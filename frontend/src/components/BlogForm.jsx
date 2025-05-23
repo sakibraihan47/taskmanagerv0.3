@@ -68,7 +68,7 @@ const BlogForm = ({ blogs, setBlogs, editingBlog, setEditingBlog }) => {
         }}
       />
       <textarea
-        placeholder="Description"
+        placeholder="Description of Blog"
         value={formData.description}
         onChange={(e) => setFormData({ ...formData, description: e.target.value })}
         className="w-full mb-5 p-3 border rounded font-semibold focus:outline-none focus:ring-2"
