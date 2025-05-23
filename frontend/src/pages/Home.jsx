@@ -16,7 +16,7 @@ const Home = () => {
             }}
           >
             Welcome to<br />
-            BlogSpace
+            Blog Space
           </h1>
           <p
             className="text-2xl md:text-3xl font-bold text-black"
